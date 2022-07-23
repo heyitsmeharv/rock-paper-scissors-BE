@@ -1,12 +1,14 @@
+const cors = require("cors");
 const express = require("express");
 const { createServer } = require("http");
 const { Server } = require("socket.io");
 
 const app = express();
+app.use(cors());
 const server = createServer(app);
 const socket = new Server(server, {
   cors: {
-    origin: "*",
+    origin: ["*"],
     // methods: ["GET", "POST"],
     // allowedHeaders: ["Access-Control-Allow-Origin"],
   },
