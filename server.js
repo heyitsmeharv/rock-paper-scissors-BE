@@ -6,7 +6,7 @@ const app = express();
 const server = createServer(app);
 const socket = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "https://heyitsmeharv-rockpaperscissors.herokuapp.com/",
   }
 });
 
