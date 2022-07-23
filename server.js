@@ -6,7 +6,8 @@ const app = express();
 const server = createServer(app);
 const socket = new Server(server, {
   cors: {
-    origin: "https://heyitsmeharv-rockpaperscissors.herokuapp.com/",
+    origin: "*",
+    methods: ["GET", "POST"],
   }
 });
 
