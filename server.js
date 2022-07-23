@@ -8,18 +8,23 @@ app.use(cors());
 const server = createServer(app);
 const socket = new Server(server, {
   cors: {
-    origin: ["*"],
-    methods: ["GET", "POST"],
-    allowedHeaders: ["Access-Control-Allow-Origin: *"],
-  },
-  handlePreflightRequest: (req, res) => {
-    res.writeHead(200, {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET,POST",
-    });
-    res.end();
+    origin: "*",
   }
 });
+// const socket = new Server(server, {
+//   cors: {
+//     origin: ["*"],
+//     methods: ["GET", "POST"],
+//     allowedHeaders: ["Access-Control-Allow-Origin: *"],
+//   },
+//   handlePreflightRequest: (req, res) => {
+//     res.writeHead(200, {
+//       "Access-Control-Allow-Origin": "*",
+//       "Access-Control-Allow-Methods": "GET,POST",
+//     });
+//     res.end();
+//   }
+// });
 
 let players = [];
 let result = "";
