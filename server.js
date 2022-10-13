@@ -133,5 +133,6 @@ socket.on('connection', (socket) => {
     Object.keys(socket.sockets).forEach(s => {
       socket.sockets[s].disconnect(true);
     });
-  }
+  });
+
 });
