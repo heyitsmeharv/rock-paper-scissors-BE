@@ -29,7 +29,9 @@ const socket = new Server(server, {
 let players = [];
 let result = "";
 
-server.listen((process.env.PORT || 5000));
+server.listen(process.env.PORT || 5000, () => {
+  console.log(`listening on port:' ${process.env.PORT}`);
+});
 
 const calcScore = winner => {
   if (winner !== 'draw') {
