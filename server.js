@@ -130,9 +130,11 @@ socket.on('connection', (socket) => {
   });
 
   socket.on("disconnect", () => {
-    Object.keys(socket.sockets).forEach(s => {
-      socket.sockets[s].disconnect(true);
-    });
+    if (socket.sockets) {
+      Object.keys(socket.sockets).forEach(s => {
+        socket.sockets[s].disconnect(true);
+      });
+    }
   });
 
 });
