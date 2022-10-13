@@ -84,6 +84,10 @@ const resolve = roomId => {
 }
 
 socket.on('connection', (socket) => {
+  socket.on("getRooms", () => {
+    socket.emit("availableRooms", socket.adapter.rooms);
+  });
+
   socket.on("createRoom", (name, roomId) => {
     players.push({
       socket: socket.id,
@@ -91,6 +95,7 @@ socket.on('connection', (socket) => {
       roomId,
       player: 'playerOne',
       score: 0,
+      connected: socket.connected
     })
     socket.join(roomId);
   });
@@ -104,6 +109,7 @@ socket.on('connection', (socket) => {
         roomId,
         player: 'playerTwo',
         score: 0,
+        connected: socket.connected
       });
       socket.broadcast.to(roomId).emit("opponentJoined", players);
     }
@@ -121,7 +127,8 @@ socket.on('connection', (socket) => {
     }
   });
 
-  // socket.on('disconnect', () => {
-  //   console.log('user disconnected');
-  // });
+  socket.on("disconnect", (roomId) => {
+    socket.sockets.to(roomId).emit("disconnect");
+    socket.leave(roomId);
+  });
 });
