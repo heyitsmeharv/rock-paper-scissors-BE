@@ -86,8 +86,9 @@ const resolve = roomId => {
 }
 
 socket.on('connection', (socket) => {
+
   socket.on("getRooms", () => {
-    socket.emit("availableRooms", socket.adapter.rooms);
+    socket.broadcast.emit("availableRooms", socket.adapter.rooms);
   });
 
   socket.on("createRoom", (name, roomId) => {
